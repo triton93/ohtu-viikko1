@@ -70,8 +70,31 @@ public class VarastoTest {
       varasto.lisaaVarastoon( -1 );
       assertEquals( 10, varasto.paljonkoMahtuu(), vertailuTarkkuus  );
     }
+    
+    @Test
+    public void varastoonEiPystyLisaamaanYliMaksimin() {
+      varasto.lisaaVarastoon(100);
+      assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void negatiivistaMaaraaEiVoiOttaa() {
+     varasto.lisaaVarastoon( 5 );
+     assertEquals(0, varasto.otaVarastosta( -1 ), vertailuTarkkuus);
+    } 
 
-
+    @Test 
+    public void eiAnnetaMuutaKuinVoidaa() {
+      varasto.lisaaVarastoon( 7 );
+      assertEquals( 7, varasto.otaVarastosta( 9  ), vertailuTarkkuus );
+    }    
+    
+    @Test
+    public void kunAnnetaanKaikkiMitaVoidaanSaldoNollaksi() {
+      varasto.lisaaVarastoon( 7 );
+      varasto.otaVarastosta( 9 );
+      assertEquals( 0, varasto.getSaldo(), vertailuTarkkuus  );
+    }
 
     @Test
     public void konstr() {
