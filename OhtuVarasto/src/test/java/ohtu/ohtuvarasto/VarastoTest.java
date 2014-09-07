@@ -74,7 +74,7 @@ public class VarastoTest {
     @Test
     public void varastoonEiPystyLisaamaanYliMaksimin() {
       varasto.lisaaVarastoon(100);
-      assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+      assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
     }
     
     @Test
